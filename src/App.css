@@ -1,0 +1,70 @@
+@keyframes blink {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.animate-blink {
+  animation: blink 1s step-start infinite;
+}
+
+.glow-text {
+  text-shadow: 0 0 5px #fff, 0 0 10px #b3b3ff, 0 0 20px #8c52ff;
+}
+
+
+.glow-heading {
+  animation: blinkGlow 2.5s infinite ease-in-out;
+  text-shadow: 0 0 10px #c084fc, 0 0 20px #a855f7, 0 0 30px #9333ea;
+}
+
+@keyframes blinkGlow {
+  0%, 100% {
+    text-shadow: 0 0 10px #c084fc, 0 0 20px #a855f7, 0 0 30px #9333ea;
+  }
+  50% {
+    text-shadow: 0 0 2px #c084fc, 0 0 5px #a855f7, 0 0 10px #9333ea;
+  }
+}
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.15);
+    transform: translateY(0px);
+  }
+  50% {
+    box-shadow: 0 0 50px rgba(255, 192, 255, 0.6);
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes text-glow {
+  0%, 100% {
+    color: #ffffff;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    color: #aa48d7b7;
+    text-shadow: 0 0 15px rgba(112, 47, 138, 0.7);
+  }
+}
+
+@keyframes syncedGlow {
+  0%, 100% {
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.15);
+    transform: scale(1);
+    color: #ffffff;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 50px rgba(255, 200, 255, 0.7);
+    transform: scale(1.05);
+    color: #ffb3f1;
+    text-shadow: 0 0 15px rgba(255, 200, 255, 0.7);
+  }
+}
