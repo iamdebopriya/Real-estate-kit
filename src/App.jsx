@@ -86,7 +86,22 @@ function App() {
       formData.extraFields.metro === 'Yes' ? 1.05 : 1,
       formData.extraFields.security === 'Yes' ? 1.02 : 1,
       formData.extraFields.hospital === 'Yes' ? 1.03 : 1,
-      formData.extraFields.park === 'Yes' ? 1.02 : 1
+      formData.extraFields.park === 'Yes' ? 1.02 : 1 ,
+      formData.extraFields.diningRoom === 'Yes' ? 1.03 : 1,
+      formData.extraFields.poojaRoom === 'Yes' ? 1.03 : 1,
+      formData.extraFields.privateTerrace === 'Yes' ? 1.04 : 1,
+      formData.extraFields.studyRoom === 'Yes' ? 1.02 : 1,
+      formData.extraFields.guestRoom === 'Yes' ? 1.03 : 1,
+      formData.extraFields.swimmingPool === 'Yes' ? 1.05 : 1,
+      formData.extraFields.garden === 'Yes' ? 1.04 : 1,
+      formData.extraFields.parking === 'Yes' ? 1.02 : 1,
+      formData.extraFields.loadingDock === 'Yes' ? 1.03 : 1,
+      formData.extraFields.meetingRoom === 'Yes' ? 1.02 : 1,
+      formData.extraFields.homeTheater === 'Yes' ? 1.03 : 1,
+      formData.extraFields.balcony === 'Yes' ? 1.02 : 1,
+      formData.extraFields.gym === 'Yes' ? 1.04 : 1,
+      formData.extraFields.studyCorner === 'Yes' ? 1.02 : 1
+
     ];
   
     if (formData.propertyCategory && formData.size && formData.floor && formData.propertyType) {
@@ -137,14 +152,17 @@ function App() {
     }
     if ( formData.size === '1000') {
       fields.push(
-        <input
+        <select
           key="studyCorner"
-          type="text"
-          name="extraFields.studyCorner"
+          name="extraFields.diningRoom"
           onChange={handleChange}
-          placeholder="Do you need a study corner?"
           className="w-full p-3 border rounded bg-white"
-        />
+        >
+          <option value="">Need a separate Study Corner?</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+        
       );
     }
     
@@ -191,24 +209,28 @@ function App() {
     }
     if (formData.propertyType === '2BHK' || formData.propertyCategory === 'Apartment') {
       fields.push(
-        <input
+        <select
           key="studyRoom"
-          type="text"
-          name="extraFields.studyRoom"
-          placeholder="Include study room?"
+          name="extraFields.diningRoom"
           onChange={handleChange}
           className="w-full p-3 border rounded bg-white"
-        />
+        >
+          <option value="">Need a separate study room?</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
       );
       fields.push(
-        <input
+        <select
           key="guestRoom"
-          type="text"
-          name="extraFields.guestRoom"
-          placeholder="Include separate guest room?"
+          name="extraFields.diningRoom"
           onChange={handleChange}
           className="w-full p-3 border rounded bg-white"
-        />
+        >
+          <option value="">Need a separate guest room?</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
       );
     }
     
@@ -371,8 +393,9 @@ function App() {
   
 
   return (
+    
     <div className="min-h-screen bg-gradient-to-b from-[#ffe5b4] to-white flex items-center justify-center p-4">
-
+        
       <div className="w-full max-w-6xl bg-white/10 backdrop-blur-md p-8 rounded-2xl shadow-2xl">
         
 
@@ -436,6 +459,7 @@ function App() {
             <p><strong>Facing:</strong> {formData.facing}</p>
             <p><strong>Floor:</strong> {formData.floor}</p>
             <p><strong>Estimated Price:</strong> <span className="text-green-700 font-semibold">{calculatePricing()}</span></p>
+            
           </div>
         </form>
       </div>
