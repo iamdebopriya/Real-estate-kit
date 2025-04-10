@@ -1,38 +1,26 @@
 {
   "submissions": [
     {
-      "id": "a2c2",
+      "id": "779f",
       "name": "Debopriya Lahiri",
       "mobile": "09748216357",
       "email": "i.debopriyalahiri@gmail.com",
+      "aadhaar": "78",
+      "pan": "597",
+      "propertyCategory": "Apartment",
       "propertyType": "2BHK",
       "size": "1000",
-      "facing": "South",
-      "floor": "1st",
-      "extraFields": {
-        "schools": "No",
-        "market": "Yes",
-        "metro": "No",
-        "hospital": "Yes",
-        "park": "Yes"
-      }
-    },
-    {
-      "id": "8bc3",
-      "name": "pupi",
-      "mobile": "3444",
-      "email": "i.debopriyalahiri@gmail.com",
-      "propertyType": "4BHK",
-      "size": "2000",
-      "facing": "North",
+      "facing": "West",
       "floor": "3rd+",
       "extraFields": {
+        "studyRoom": "no",
+        "guestRoom": "yes",
         "schools": "Yes",
-        "market": "No",
+        "market": "Yes",
         "metro": "Yes",
-        "security": "No",
+        "security": "Yes",
         "hospital": "Yes",
-        "park": "No"
+        "park": "Yes"
       }
     }
   ]
