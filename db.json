@@ -47,6 +47,30 @@
         "hospital": "Yes",
         "park": "Yes"
       }
+    },
+    {
+      "id": "d60e",
+      "name": "Debopriya Lahiri",
+      "mobile": "09748216357",
+      "email": "i.debopriyalahiri@gmail.com",
+      "aadhaar": "670065908723",
+      "pan": "597",
+      "propertyCategory": "Apartment",
+      "propertyType": "4BHK",
+      "size": "1500",
+      "facing": "South",
+      "floor": "Ground",
+      "extraFields": {
+        "studyRoom": "no",
+        "guestRoom": "yes",
+        "homeTheater": "Yes",
+        "schools": "Yes",
+        "market": "No",
+        "metro": "Yes",
+        "security": "Yes",
+        "hospital": "Yes",
+        "park": "No"
+      }
     }
   ]
 }

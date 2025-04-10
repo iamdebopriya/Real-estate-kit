@@ -1,3 +1,4 @@
+
 // File: src/App.js (with professional grouping, extra identity fields, and dynamic form logic)
 import React, { useState } from 'react';
 import axios from 'axios';
@@ -434,7 +435,7 @@ function App() {
             <p><strong>Size:</strong> {formData.size} sqft</p>
             <p><strong>Facing:</strong> {formData.facing}</p>
             <p><strong>Floor:</strong> {formData.floor}</p>
-            <p><strong>🏷️ Estimated Price:</strong> <span className="text-green-700 font-semibold">{calculatePricing()}</span></p>
+            <p><strong>Estimated Price:</strong> <span className="text-green-700 font-semibold">{calculatePricing()}</span></p>
           </div>
         </form>
       </div>
