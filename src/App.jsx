@@ -134,7 +134,7 @@ function App() {
         </select>
       );
     }
-    if (formData.propertyType === '1BHK' || formData.size === '1000') {
+    if ( formData.size === '1000') {
       fields.push(
         <input
           key="studyCorner"
@@ -220,6 +220,104 @@ function App() {
           className="w-full p-3 border rounded bg-white"
         >
           <option value="">Need a swimming pool?</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+      );
+    }
+    if (formData.propertyType === 'Garden') {
+      fields.push(
+        <select
+          key="garden"
+          name="extraFields.garden"
+          onChange={handleChange}
+          className="w-full p-3 border rounded bg-white"
+        >
+          <option value="">Need a garden?</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+      );
+    }
+    if (formData.propertyType === 'Retail') {
+      fields.push(
+        <select
+          key="parking"
+          name="extraFields.parking"
+          onChange={handleChange}
+          className="w-full p-3 border rounded bg-white"
+        >
+          <option value="">Need parking space?</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+      );
+    }
+    if (formData.propertyType === 'Warehouse') {
+      fields.push(
+        <select
+          key="loadingDock"
+          name="extraFields.loadingDock"
+          onChange={handleChange}
+          className="w-full p-3 border rounded bg-white"
+        >
+          <option value="">Need loading dock?</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+      );
+    }
+    if (formData.propertyType === 'Office') {
+      fields.push(
+        <select
+          key="meetingRoom"
+          name="extraFields.meetingRoom"
+          onChange={handleChange}
+          className="w-full p-3 border rounded bg-white"
+        >
+          <option value="">Need meeting room?</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+      );
+    }
+    if (formData.propertyType === '4BHK') {
+      fields.push(
+        <select
+          key="homeTheater"
+          name="extraFields.homeTheater"
+          onChange={handleChange}
+          className="w-full p-3 border rounded bg-white"
+        >
+          <option value="">Need home theater?</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+      );
+    }
+    if (formData.propertyType === '3BHK') {
+      fields.push(
+        <select
+          key="balcony"
+          name="extraFields.balcony"
+          onChange={handleChange}
+          className="w-full p-3 border rounded bg-white"
+        >
+          <option value="">Need balcony?</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+      );
+    }
+    if (formData.size === '3000') {
+      fields.push(
+        <select
+          key="gym"
+          name="extraFields.gym"
+          onChange={handleChange}
+          className="w-full p-3 border rounded bg-white"
+        >
+          <option value="">Need gym?</option>
           <option value="Yes">Yes</option>
           <option value="No">No</option>
         </select>
