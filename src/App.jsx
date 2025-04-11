@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 
+
 function App() {
   const [formData, setFormData] = useState({
     name: '',
@@ -16,6 +17,15 @@ function App() {
     size: '',
     facing: '',
     floor: '',
+    dob: '',
+    maritalStatus: '',
+    occupation: '',
+    income: '',
+    address: '',
+    city: '',
+    state: '',
+    pincode: '',
+    
     extraFields: {}
   });
 
@@ -48,11 +58,11 @@ function App() {
   const calculatePricing = () => {
     const basePrice = {
       Apartment: 5000000,
-      Penthouse: 10000000,
+      
       Villa: 15000000,
       Commercial: 20000000
     };
-  
+
     const sizeMultiplier = {
       '1000': 1,
       '1500': 1.3,
@@ -60,14 +70,14 @@ function App() {
       '2500': 1.8,
       '3000': 2
     };
-  
+
     const floorBoost = {
       Ground: 1,
       '1st': 1.02,
       '2nd': 1.04,
       '3rd+': 1.06
     };
-  
+
     const bhkModifier = {
       '1BHK': 1.0,
       '2BHK': 1.1,
@@ -79,14 +89,14 @@ function App() {
       Retail: 1.2,
       Warehouse: 1.15
     };
-  
+
     const bonusFactors = [
       formData.extraFields.schools === 'Yes' ? 1.03 : 1,
       formData.extraFields.market === 'Yes' ? 1.02 : 1,
       formData.extraFields.metro === 'Yes' ? 1.05 : 1,
       formData.extraFields.security === 'Yes' ? 1.02 : 1,
       formData.extraFields.hospital === 'Yes' ? 1.03 : 1,
-      formData.extraFields.park === 'Yes' ? 1.02 : 1 ,
+      formData.extraFields.park === 'Yes' ? 1.02 : 1,
       formData.extraFields.diningRoom === 'Yes' ? 1.03 : 1,
       formData.extraFields.poojaRoom === 'Yes' ? 1.03 : 1,
       formData.extraFields.privateTerrace === 'Yes' ? 1.04 : 1,
@@ -103,18 +113,18 @@ function App() {
       formData.extraFields.studyCorner === 'Yes' ? 1.02 : 1
 
     ];
-  
-    if (formData.propertyCategory && formData.size && formData.floor && formData.propertyType) {
+
+    if (formData.propertyCategory && formData.size && formData.floor && formData.propertyType  ) {
       const base = basePrice[formData.propertyCategory] || 0;
       const sizeFactor = sizeMultiplier[formData.size] || 1;
       const floorFactor = floorBoost[formData.floor] || 1;
       const bhkBoost = bhkModifier[formData.propertyType] || 1;
       const locationBoost = bonusFactors.reduce((a, b) => a * b, 1);
-  
+
       const total = base * sizeFactor * floorFactor * bhkBoost * locationBoost;
       return `₹ ${Math.round(total).toLocaleString()}`;
     }
-  
+
     return '₹ 0';
   };
 
@@ -150,7 +160,7 @@ function App() {
         </select>
       );
     }
-    if ( formData.size === '1000') {
+    if (formData.size === '1000') {
       fields.push(
         <select
           key="studyCorner"
@@ -162,10 +172,10 @@ function App() {
           <option value="Yes">Yes</option>
           <option value="No">No</option>
         </select>
-        
+
       );
     }
-    
+
     if (formData.propertyType === '3BHK' && formData.facing === 'South') {
       fields.push(
         <select
@@ -192,7 +202,7 @@ function App() {
         </select>
       );
     }
-    
+
     if (formData.size === '3000' && formData.propertyCategory === 'Penthouse') {
       fields.push(
         <select
@@ -233,7 +243,7 @@ function App() {
         </select>
       );
     }
-    
+
     if (formData.propertyType === 'Luxury') {
       fields.push(
         <select
@@ -346,8 +356,8 @@ function App() {
         </select>
       );
     }
-    
-    
+
+
     // Add common environment preference fields
     fields.push(
       <>
@@ -381,23 +391,120 @@ function App() {
           <option value="Yes">Yes</option>
           <option value="No">No</option>
         </select>
+        <select name="extraFields.carParking" onChange={handleChange} className="w-full p-3 border rounded bg-white">
+          <option value="">Car Parking?</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+        <select name="extraFields.paymentPlan" onChange={handleChange} className="w-full p-3 border rounded bg-white">
+          <option value="">Payment Plan?</option>
+          <option value="Installment Payment">Installment Payment</option>
+          <option value="Down Payment">Down Payment</option>
+        </select>
+        <div className="mt-4">
+          <label className="block mb-1 font-medium">Mode of Payment</label>
+          <div className="flex gap-4">
+            {['Cheque', 'Draft', 'Pay Order'].map(option => (
+              <label key={option} className="flex items-center gap-2">
+                <input type="radio" name="extraFields.modeOfPayment" value={option} onChange={handleChange} />
+                {option}
+              </label>
+            ))}
+          </div>
+
+          <input
+            type="text"
+            name="extraFields.paymentDetails"
+            placeholder="Payment Details (Cheque / Draft / Pay Order No.)"
+            onChange={handleChange}
+            className="w-full p-3 mt-2 border rounded bg-white"
+          />
+          <input
+            type="date"
+            name="extraFields.paymentDate"
+            placeholder="Date"
+            onChange={handleChange}
+            className="w-full p-3 mt-2 border rounded bg-white"
+          />
+          <input
+            type="number"
+            name="extraFields.amount"
+            placeholder="Amount in Rupees"
+            onChange={handleChange}
+            className="w-full p-3 mt-2 border rounded bg-white"
+          />
+          <input
+            type="text"
+            name="extraFields.drawnOnBranch"
+            placeholder="Drawn on / Branch"
+            onChange={handleChange}
+            className="w-full p-3 mt-2 border rounded bg-white"
+          />
+        </div>
+
+
+        <div className="mt-6">
+          <label className="block mb-1 font-medium">Home Loan Required?</label>
+          <div className="flex gap-4">
+            <label className="flex items-center gap-2">
+              <input type="radio" name="extraFields.loanRequired" value="Yes" onChange={handleChange} />
+              Yes
+            </label>
+            <label className="flex items-center gap-2">
+              <input type="radio" name="extraFields.loanRequired" value="No" onChange={handleChange} />
+              No
+            </label>
+          </div>
+          <input
+            type="text"
+            name="extraFields.preferredFinancier"
+            placeholder="Preferred Financier"
+            onChange={handleChange}
+            className="w-full p-3 mt-2 border rounded bg-white"
+          />
+        </div>
+
+
+        <div className="mt-6">
+          <label className="block mb-1 font-medium">How did you come to know about the project?</label>
+          <div className="grid grid-cols-2 gap-2">
+            {['Existing Customer', 'Newsprint', 'Hoarding', 'Website', 'E-mail', 'Channel Partners'].map(option => (
+              <label key={option} className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  name="extraFields.sourceOfInfo"
+                  value={option}
+                  onChange={handleChange}
+                />
+                {option}
+              </label>
+            ))}
+            <input
+              type="text"
+              name="extraFields.sourceOther"
+              placeholder="Others (Specify)"
+              onChange={handleChange}
+              className="col-span-2 p-3 border rounded bg-white"
+            />
+          </div>
+        </div>
       </>
     );
-    
-    
-    
-    
+
+
+
+
     return fields;
   };
 
-  
+
 
   return (
-    
-    <div className="min-h-screen bg-gradient-to-b from-[#ffe5b4] to-white flex items-center justify-center p-4">
-        
+
+    <div className="min-h-screen bg-gradient-to-r from-pink-200 to-purple-300 flex items-center justify-center p-4">
+
       <div className="w-full max-w-6xl bg-white/10 backdrop-blur-md p-8 rounded-2xl shadow-2xl">
-        
+
 
         <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="space-y-4">
@@ -407,12 +514,28 @@ function App() {
             <input type="email" name="email" placeholder="Email Address" onChange={handleChange} className="w-full p-3 border rounded bg-white" required />
             <input type="text" name="aadhaar" placeholder="Aadhaar Number" onChange={handleChange} className="w-full p-3 border rounded bg-white" required />
             <input type="text" name="pan" placeholder="PAN Card Number" onChange={handleChange} className="w-full p-3 border rounded bg-white" required />
+            <input type="text" name="address" placeholder="Address" onChange={handleChange} className="w-full p-3 border rounded bg-white" required />
+            <input type="text" name="city" placeholder="City" onChange={handleChange} className="w-full p-3 border rounded bg-white" required />
+            <input type="text" name="state" placeholder="State" onChange={handleChange} className="w-full p-3 border rounded bg-white" required />
+            <input type="text" name="pincode" placeholder="Pincode" onChange={handleChange} className="w-full p-3 border rounded bg-white" required />
+            <input type="text" name="dob" placeholder="Date of Birth" onChange={handleChange} className="w-full p-3 border rounded bg-white" required />
+            <select name="maritalStatus" onChange={handleChange} className="w-full p-3 border rounded bg-white" required>
+              <option value="">Select Marital Status</option>
+              <option value="Single">Single</option>
+              <option value="Married">Married</option>
+              <option value="Divorced">Divorced</option>
+              <option value="Widowed">Widowed</option>
+            </select>
+            <input type="text" name="occupation" placeholder="Occupation" onChange={handleChange} className="w-full p-3 border rounded bg-white" required />
+            <input type="number" name="income" placeholder="Annual Income" onChange={handleChange} className="w-full p-3 border rounded bg-white" required />
+
+            
 
             <select name="propertyCategory" onChange={handleChange} className="w-full p-3 border rounded bg-white" required>
               <option value="">Select Property Category</option>
               <option value="Apartment">Apartment</option>
               <option value="Villa">Villa</option>
-              <option value="Penthouse">Penthouse</option>
+              
               <option value="Commercial">Commercial</option>
             </select>
 
@@ -447,22 +570,45 @@ function App() {
           </div>
 
           <div className="bg-white/30 backdrop-blur p-6 rounded-xl text-gray-900 shadow-md">
-            <h2 className="text-xl font-bold mb-2 text-blue-800">📋 Live Preview</h2>
+            <h2 className="text-xl font-bold mb-2 text-blue-800">Live Preview</h2>
             <p><strong>Name:</strong> {formData.name}</p>
             <p><strong>Mobile:</strong> {formData.mobile}</p>
             <p><strong>Email:</strong> {formData.email}</p>
             <p><strong>Aadhaar:</strong> {formData.aadhaar}</p>
             <p><strong>PAN:</strong> {formData.pan}</p>
+            <p><strong>Address:</strong> {formData.address}</p>
+            <p><strong>City:</strong> {formData.city}</p>
+            <p><strong>State:</strong> {formData.state}</p>
+            <p><strong>Pincode:</strong> {formData.pincode}</p>
+            <p><strong>Date of Birth:</strong> {formData.dob}</p>
+            <p><strong>Marital Status:</strong> {formData.maritalStatus}</p>
+            <p><strong>Occupation:</strong> {formData.occupation}</p>
+            <p><strong>Annual Income:</strong> {formData.income}</p>
             <p><strong>Category:</strong> {formData.propertyCategory}</p>
             <p><strong>Type:</strong> {formData.propertyType}</p>
             <p><strong>Size:</strong> {formData.size} sqft</p>
             <p><strong>Facing:</strong> {formData.facing}</p>
             <p><strong>Floor:</strong> {formData.floor}</p>
+            <p><strong>Extra Features:</strong></p>
+            <ul>
+              {Object.keys(formData.extraFields).map((key) => (
+                <li key={key}>
+                  {key.replace('extraFields.', '')}: {formData.extraFields[key]}
+                </li>
+              ))}
+            </ul>
             <p><strong>Estimated Price:</strong> <span className="text-green-700 font-semibold">{calculatePricing()}</span></p>
             
+
           </div>
+          <div className="mt-10 border-t pt-6">
+  
+</div>
+
+          
         </form>
       </div>
+      {/* <App1 /> */}
     </div>
   );
 }
