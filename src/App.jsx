@@ -28,6 +28,22 @@ function App() {
     
     extraFields: {}
   });
+  const [errors, setErrors] = useState({});
+  const validateForm = () => {
+    const newErrors = {};
+  
+    if (!formData.name.trim()) newErrors.name = "Name is required";
+    if (!formData.email.includes('@')) newErrors.email = "Enter a valid email";
+    if (!/^[0-9]{10}$/.test(formData.mobile)) newErrors.mobile = "Mobile must be 10 digits";
+    if (!/^[0-9]{12}$/.test(formData.aadhaar)) newErrors.aadhaar = "Aadhaar must be 12 digits";
+    if (!/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(formData.pan)) newErrors.pan = "Invalid PAN format";
+    
+    if (!/^[0-9]{6}$/.test(formData.pincode)) newErrors.pincode = "Pincode must be 6 digits";
+  
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -47,6 +63,11 @@ function App() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!validateForm()) {
+    alert("Please fix errors before submitting");
+    return;
+  }
+
     try {
       await axios.post('http://localhost:3001/submissions', formData);
       alert('Form submitted successfully!');
