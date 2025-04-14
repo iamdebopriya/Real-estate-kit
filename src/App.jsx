@@ -25,34 +25,34 @@ function App() {
     city: '',
     state: '',
     pincode: '',
-    
+
     extraFields: {}
   });
   const [errors, setErrors] = useState({});
 
-const validateForm = () => {
-  const newErrors = {};
+  const validateForm = () => {
+    const newErrors = {};
 
-  const name = formData.name.trim();
-  const email = formData.email.trim();
-  const mobile = formData.mobile.replace(/\s+/g, '');
-  const aadhaar = formData.aadhaar.replace(/\s+/g, '');
-  const pan = formData.pan.trim();
-  const pincode = formData.pincode.replace(/\s+/g, '');
+    const name = formData.name.trim();
+    const email = formData.email.trim();
+    const mobile = formData.mobile.replace(/\s+/g, '');
+    const aadhaar = formData.aadhaar.replace(/\s+/g, '');
+    const pan = formData.pan.trim();
+    const pincode = formData.pincode.replace(/\s+/g, '');
 
-  if (!name) newErrors.name = "Name is required";
-  if (!email || !email.includes('@')) newErrors.email = "Enter a valid email";
-  if (!/^[0-9]{10}$/.test(mobile)) newErrors.mobile = "Mobile must be 10 digits";
-  if (!/^[0-9]{12}$/.test(aadhaar)) newErrors.aadhaar = "Aadhaar must be 12 digits";
-  if (!/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(pan)) newErrors.pan = "Invalid PAN format";
-  if (!/^[0-9]{6}$/.test(pincode)) newErrors.pincode = "Pincode must be 6 digits";
+    if (!name) newErrors.name = "Name is required";
+    if (!email || !email.includes('@')) newErrors.email = "Enter a valid email";
+    if (!/^[0-9]{10}$/.test(mobile)) newErrors.mobile = "Mobile must be 10 digits";
+    if (!/^[0-9]{12}$/.test(aadhaar)) newErrors.aadhaar = "Aadhaar must be 12 digits";
+    if (!/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(pan)) newErrors.pan = "Invalid PAN format";
+    if (!/^[0-9]{6}$/.test(pincode)) newErrors.pincode = "Pincode must be 6 digits";
 
-  setErrors(newErrors);
-  
-  return Object.keys(newErrors).length === 0;
-};
+    setErrors(newErrors);
 
-  
+    return Object.keys(newErrors).length === 0;
+  };
+
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -73,9 +73,9 @@ const validateForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateForm()) {
-    alert("Please fix errors before submitting");
-    return;
-  }
+      alert("Please fix errors before submitting");
+      return;
+    }
 
     try {
       await axios.post('http://localhost:3001/submissions', formData);
@@ -88,7 +88,7 @@ const validateForm = () => {
   const calculatePricing = () => {
     const basePrice = {
       Apartment: 5000000,
-      
+
       Villa: 15000000,
       Commercial: 20000000
     };
@@ -144,7 +144,7 @@ const validateForm = () => {
 
     ];
 
-    if (formData.propertyCategory && formData.size && formData.floor && formData.propertyType  ) {
+    if (formData.propertyCategory && formData.size && formData.floor && formData.propertyType) {
       const base = basePrice[formData.propertyCategory] || 0;
       const sizeFactor = sizeMultiplier[formData.size] || 1;
       const floorFactor = floorBoost[formData.floor] || 1;
@@ -540,15 +540,27 @@ const validateForm = () => {
           <div className="space-y-4">
             <h1 className="text-3xl font-bold text-purple-700 glow-text text-center mb-2 drop-shadow"> Real Estate Application</h1>
             <input type="text" name="name" placeholder="Full Name" onChange={handleChange} className="w-full p-3 border rounded bg-white" required />
+            {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
+
             <input type="tel" name="mobile" placeholder="Mobile Number" onChange={handleChange} className="w-full p-3 border rounded bg-white" required />
+            {errors.mobile && <p className="text-red-500 text-sm mt-1">{errors.mobile}</p>}
+
             <input type="email" name="email" placeholder="Email Address" onChange={handleChange} className="w-full p-3 border rounded bg-white" required />
+            {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+
             <input type="text" name="aadhaar" placeholder="Aadhaar Number" onChange={handleChange} className="w-full p-3 border rounded bg-white" required />
+            {errors.aadhaar && <p className="text-red-500 text-sm mt-1">{errors.aadhaar}</p>}
+
             <input type="text" name="pan" placeholder="PAN Card Number" onChange={handleChange} className="w-full p-3 border rounded bg-white" required />
+            {errors.pan && <p className="text-red-500 text-sm mt-1">{errors.pan}</p>}
+
             <input type="text" name="address" placeholder="Address" onChange={handleChange} className="w-full p-3 border rounded bg-white" required />
             <input type="text" name="city" placeholder="City" onChange={handleChange} className="w-full p-3 border rounded bg-white" required />
             <input type="text" name="state" placeholder="State" onChange={handleChange} className="w-full p-3 border rounded bg-white" required />
             <input type="text" name="pincode" placeholder="Pincode" onChange={handleChange} className="w-full p-3 border rounded bg-white" required />
-            <input type="text" name="dob" placeholder="Date of Birth" onChange={handleChange} className="w-full p-3 border rounded bg-white" required />
+            {errors.pincode && <p className="text-red-500 text-sm mt-1">{errors.pincode}</p>}
+
+            <input type="date" name="dob" placeholder="Date of Birth" onChange={handleChange} className="w-full p-3 border rounded bg-white" required />
             <select name="maritalStatus" onChange={handleChange} className="w-full p-3 border rounded bg-white" required>
               <option value="">Select Marital Status</option>
               <option value="Single">Single</option>
@@ -559,13 +571,13 @@ const validateForm = () => {
             <input type="text" name="occupation" placeholder="Occupation" onChange={handleChange} className="w-full p-3 border rounded bg-white" required />
             <input type="number" name="income" placeholder="Annual Income" onChange={handleChange} className="w-full p-3 border rounded bg-white" required />
 
-            
+
 
             <select name="propertyCategory" onChange={handleChange} className="w-full p-3 border rounded bg-white" required>
               <option value="">Select Property Category</option>
               <option value="Apartment">Apartment</option>
               <option value="Villa">Villa</option>
-              
+
               <option value="Commercial">Commercial</option>
             </select>
 
@@ -628,17 +640,17 @@ const validateForm = () => {
               ))}
             </ul>
             <p><strong>Estimated Price:</strong> <span className="text-green-700 font-semibold">{calculatePricing()}</span></p>
-            
+
 
           </div>
           <div className="mt-10 border-t pt-6">
-  
-</div>
 
-          
+          </div>
+
+
         </form>
       </div>
-  
+
     </div>
   );
 }
