@@ -29,20 +29,29 @@ function App() {
     extraFields: {}
   });
   const [errors, setErrors] = useState({});
-  const validateForm = () => {
-    const newErrors = {};
+
+const validateForm = () => {
+  const newErrors = {};
+
+  const name = formData.name.trim();
+  const email = formData.email.trim();
+  const mobile = formData.mobile.replace(/\s+/g, '');
+  const aadhaar = formData.aadhaar.replace(/\s+/g, '');
+  const pan = formData.pan.trim();
+  const pincode = formData.pincode.replace(/\s+/g, '');
+
+  if (!name) newErrors.name = "Name is required";
+  if (!email || !email.includes('@')) newErrors.email = "Enter a valid email";
+  if (!/^[0-9]{10}$/.test(mobile)) newErrors.mobile = "Mobile must be 10 digits";
+  if (!/^[0-9]{12}$/.test(aadhaar)) newErrors.aadhaar = "Aadhaar must be 12 digits";
+  if (!/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(pan)) newErrors.pan = "Invalid PAN format";
+  if (!/^[0-9]{6}$/.test(pincode)) newErrors.pincode = "Pincode must be 6 digits";
+
+  setErrors(newErrors);
   
-    if (!formData.name.trim()) newErrors.name = "Name is required";
-    if (!formData.email.includes('@')) newErrors.email = "Enter a valid email";
-    if (!/^[0-9]{10}$/.test(formData.mobile)) newErrors.mobile = "Mobile must be 10 digits";
-    if (!/^[0-9]{12}$/.test(formData.aadhaar)) newErrors.aadhaar = "Aadhaar must be 12 digits";
-    if (!/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(formData.pan)) newErrors.pan = "Invalid PAN format";
-    
-    if (!/^[0-9]{6}$/.test(formData.pincode)) newErrors.pincode = "Pincode must be 6 digits";
-  
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
+  return Object.keys(newErrors).length === 0;
+};
+
   
 
   const handleChange = (e) => {
