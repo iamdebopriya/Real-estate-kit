@@ -643,9 +643,7 @@ function App() {
 
 
           </div>
-          <div className="mt-10 border-t pt-6">
-
-          </div>
+          
 
 
         </form>
