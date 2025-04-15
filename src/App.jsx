@@ -635,7 +635,7 @@ function App() {
             <ul>
               {Object.keys(formData.extraFields).map((key) => (
                 <li key={key}>
-                  {key}: {formData.extraFields[key]}
+                  {key.replace('extraFields.', '')}: {formData.extraFields[key]}
                 </li>
               ))}
             </ul>
