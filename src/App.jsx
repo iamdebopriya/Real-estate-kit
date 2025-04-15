@@ -194,7 +194,7 @@ function App() {
       fields.push(
         <select
           key="studyCorner"
-          name="extraFields.diningRoom"
+          name="extraFields.studycorner"
           onChange={handleChange}
           className="w-full p-3 border rounded bg-white"
         >
@@ -233,7 +233,7 @@ function App() {
       );
     }
 
-    if (formData.size === '3000' && formData.propertyCategory === 'Penthouse') {
+    if (formData.size === '3000' && formData.propertyType === 'Luxury') {
       fields.push(
         <select
           key="privateTerrace"
@@ -251,7 +251,7 @@ function App() {
       fields.push(
         <select
           key="studyRoom"
-          name="extraFields.diningRoom"
+          name="extraFields.studyRoom"
           onChange={handleChange}
           className="w-full p-3 border rounded bg-white"
         >
@@ -263,7 +263,7 @@ function App() {
       fields.push(
         <select
           key="guestRoom"
-          name="extraFields.diningRoom"
+          name="extraFields.guestRoom"
           onChange={handleChange}
           className="w-full p-3 border rounded bg-white"
         >
