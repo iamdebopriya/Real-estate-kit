@@ -78,6 +78,46 @@
         "loanRequired": "No",
         "sourceOfInfo": "Existing Customer"
       }
+    },
+    {
+      "id": "47dc",
+      "name": "Debopriya",
+      "mobile": "9748216357",
+      "email": "6547@gmial.com",
+      "aadhaar": "123456789012",
+      "pan": "AAAAA9999A",
+      "propertyCategory": "Villa",
+      "propertyType": "Luxury",
+      "size": "2500",
+      "facing": "South",
+      "floor": "1st",
+      "dob": "2004-06-18",
+      "maritalStatus": "Widowed",
+      "occupation": "dfrb e",
+      "income": "234678",
+      "address": "fgngd463536",
+      "city": "hfgcd",
+      "state": "hgcxjnhgcd",
+      "pincode": "700039",
+      "extraFields": {
+        "swimmingPool": "Yes",
+        "schools": "No",
+        "market": "Yes",
+        "metro": "No",
+        "security": "No",
+        "hospital": "No",
+        "park": "No",
+        "carParking": "No",
+        "paymentPlan": "Down Payment",
+        "modeOfPayment": "Draft",
+        "paymentDetails": "57458",
+        "paymentDate": "2026-09-12",
+        "amount": "1200000",
+        "drawnOnBranch": "gerejn",
+        "loanRequired": "No",
+        "preferredFinancier": "dfrbr",
+        "sourceOfInfo": "Hoarding"
+      }
     }
   ]
 }
