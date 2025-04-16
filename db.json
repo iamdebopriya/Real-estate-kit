@@ -118,6 +118,49 @@
         "preferredFinancier": "dfrbr",
         "sourceOfInfo": "Hoarding"
       }
+    },
+    {
+      "id": "383a",
+      "name": "Debopriya",
+      "mobile": "9748216357",
+      "email": "6547@gmial.com",
+      "aadhaar": "123456789012",
+      "pan": "AAAAA9999A",
+      "propertyCategory": "Apartment",
+      "propertyType": "3BHK",
+      "size": "2500",
+      "facing": "East",
+      "floor": "1st",
+      "dob": "2004-06-18",
+      "maritalStatus": "Divorced",
+      "occupation": "dfrb e",
+      "income": "9998",
+      "address": "fgngd463536",
+      "city": "hfgcd",
+      "state": "hgcxjnhgcd",
+      "pincode": "700039",
+      "extraFields": {
+        "studyRoom": "No",
+        "guestRoom": "Yes",
+        "balcony": "No",
+        "schools": "No",
+        "market": "No",
+        "metro": "No",
+        "security": "No",
+        "hospital": "No",
+        "park": "No",
+        "carParking": "No",
+        "paymentPlan": "Installment Payment",
+        "modeOfPayment": "Draft",
+        "paymentDetails": "g5edtn1234",
+        "paymentDate": "2025-03-13",
+        "amount": "100000",
+        "drawnOnBranch": "gerejn",
+        "loanRequired": "Yes",
+        "sourceOfInfo": "Hoarding",
+        "preferredFinancier": "vgdebsr",
+        "sourceOther": "trnhyrtf"
+      }
     }
   ]
 }

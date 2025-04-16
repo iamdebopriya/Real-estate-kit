@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import axios from 'axios';
+import { supabase } from './supabaseClient'
 
 
 
@@ -70,21 +71,44 @@ function App() {
     }
   };
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   if (!validateForm()) {
+  //     alert("Please fix errors before submitting");
+  //     return;
+  //   }
+
+  //   try {
+  //     await axios.post('http://localhost:3001/submissions', formData);
+  //     alert('Form submitted successfully!');
+  //   } catch (err) {
+  //     alert('Submission failed!');
+  //   }
+  // };
   const handleSubmit = async (e) => {
     e.preventDefault();
+  
     if (!validateForm()) {
       alert("Please fix errors before submitting");
       return;
     }
-
+  
     try {
-      await axios.post('http://localhost:3001/submissions', formData);
-      alert('Form submitted successfully!');
+      const { data, error } = await supabase
+        .from('kit') 
+        .insert([{ data: formData }]); 
+  
+      if (error) {
+        console.error(error);
+        alert('Submission failed!');
+      } else {
+        alert('Form submitted successfully!');
+      }
     } catch (err) {
+      console.error(err);
       alert('Submission failed!');
     }
   };
-
   const calculatePricing = () => {
     const basePrice = {
       Apartment: 5000000,
