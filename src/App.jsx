@@ -45,7 +45,7 @@ function App() {
     if (!email || !email.includes('@')) newErrors.email = "Enter a valid email";
     if (!/^[0-9]{10}$/.test(mobile)) newErrors.mobile = "Mobile must be 10 digits";
     if (!/^[0-9]{12}$/.test(aadhaar)) newErrors.aadhaar = "Aadhaar must be 12 digits";
-    if (!/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(pan)) newErrors.pan = "Invalid PAN format";
+    // if (!/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(pan)) newErrors.pan = "Invalid PAN format";
     if (!/^[0-9]{6}$/.test(pincode)) newErrors.pincode = "Pincode must be 6 digits";
 
     setErrors(newErrors);
@@ -576,7 +576,7 @@ function App() {
             {errors.aadhaar && <p className="text-red-500 text-sm mt-1">{errors.aadhaar}</p>}
 
             <input type="text" name="pan" placeholder="PAN Card Number" onChange={handleChange} className="w-full p-3 border rounded bg-white" required />
-            {errors.pan && <p className="text-red-500 text-sm mt-1">{errors.pan}</p>}
+            {/* {errors.pan && <p className="text-red-500 text-sm mt-1">{errors.pan}</p>} */}
 
             <input type="text" name="address" placeholder="Address" onChange={handleChange} className="w-full p-3 border rounded bg-white" required />
             <input type="text" name="city" placeholder="City" onChange={handleChange} className="w-full p-3 border rounded bg-white" required />
